@@ -1,0 +1,56 @@
+<div class="upload-container">
+    <h2 class="title">Road Crack Detection</h2>
+    
+    <div class="upload-section">
+        <div class="drag-drop-box" (click)="fileInput.click()" title="Click to select an image or drag and drop here">
+            <input #fileInput type="file" hidden (change)="onFileSelected($event)" accept="image/*">
+            <mat-icon class="upload-icon">cloud_upload</mat-icon>
+            <p>Drag & drop images here<br>or click to browse</p>
+            <small>Supported formats: JPG, PNG, JPEG</small>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn camera-btn" (click)="captureFromCamera()" title="Capture an image using your camera">
+                <mat-icon>photo_camera</mat-icon>
+                Capture from Camera
+            </button>
+            
+            <button class="btn upload-btn" (click)="onUpload()" [disabled]="!selectedFile" title="Upload and analyze the selected image">
+                <mat-icon>cloud_upload</mat-icon>
+                Analyze Image
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="loading" class="loading-section">
+        <mat-spinner diameter="40"></mat-spinner>
+        <p>Analyzing image for cracks...</p>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+        <p>{{ errorMessage }}</p>
+    </div>
+
+    <div *ngIf="detectionResult" class="results-card">
+        <h3>Detection Results</h3>
+        
+        <div class="image-preview">
+            <img [src]="detectionImgUrl" alt="Analyzed result">
+            <div class="severity-badge">
+                Severity: {{ severityScore | number:'1.1-1' }}/10
+            </div>
+        </div>
+
+        <div class="report-actions">
+            <button class="btn confirm-btn" (click)="submitReport()" title="Confirm the detection results">
+                <mat-icon>check_circle</mat-icon>
+                Confirm Detection
+            </button>
+            
+            <button class="btn reject-btn" (click)="resetUpload()" title="Retry the analysis with a new image">
+                <mat-icon>cancel</mat-icon>
+                Retry Analysis
+            </button>
+        </div>
+    </div>
+</div>

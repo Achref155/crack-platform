@@ -1,0 +1,86 @@
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #ffffff;
+    margin-top: 20px;
+}
+
+/* Table Styling */
+.p-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.p-table th,
+.p-table td {
+    text-align: left;
+    padding: 12px 20px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.p-table th {
+    background-color: #f1f1f1;
+    color: #333;
+    font-weight: bold;
+}
+
+.p-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.p-table td img {
+    border-radius: 8px;
+    margin-right: 12px;
+}
+
+
+/* Button Styling */
+.p-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.p-button-sm {
+    padding: 5px 10px;
+    font-size: 13px;
+}
+
+.p-button-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.p-button-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* No data message styling */
+p {
+    color: #999;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Additional styling for spacing */
+.card .flex > span {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.card .flex .p-button {
+    font-size: 14px;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.card .flex .p-button:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}

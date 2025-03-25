@@ -1,0 +1,131 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- Breadcrumbs -->
+        <div class="bredcrumb_wrap">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Post Report</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+
+        <!-- Single Wrap -->
+        <div class="_dashboard_content">
+            <div class="_dashboard_content_header">
+                <div class="_dashboard__header_flex">
+                    <h4><i class="ti-briefcase mr-1"></i>Submit Form</h4>
+                </div>
+            </div>
+
+            <div class="_dashboard_content_body">
+                <form [formGroup]="postForm"  (ngSubmit)="create()" >
+                    <div class="row">
+
+                        <div class="col-xl-4 col-lg-6">
+                            <div class="form-group">
+                                <label>Report Name</label>
+                                <input type="text" formControlName="name" [ngClass]="{'form-control with-light': true, 'error': postForm.controls['name'].touched && postForm.controls['name'].invalid}" >
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-6">
+                            <div class="form-group with-light">
+                                <label>Crack Width (mm)</label>
+                                <input type="number" formControlName="crackWidth" [ngClass]="{'form-control with-light': true, 'error': postForm.controls['crackWidth'].touched && postForm.controls['crackWidth'].invalid}">
+                                <!-- Display crack danger level -->
+                                <div>Danger Level: {{ dangerLevel }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-6">
+                            <div class="form-group">
+                                <label>Location</label>
+                                <div class="input-group">
+                                    <input type="text" 
+                                           formControlName="location" 
+                                           [ngClass]="{'form-control with-light': true, 'error': postForm.controls['location'].touched && postForm.controls['location'].invalid}"
+                                           readonly>
+                                    <button type="button" 
+                                           class="btn btn-secondary input-group-addon"
+                                           (click)="detectLocation()">
+                                       <img src="assets/icons/map-marker.svg" alt="Map Marker" style="width: 16px; height: 16px;">
+                                   </button>
+                                </div>
+                                <div *ngIf="detectingLocation" class="loading-indicator">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
+                                <div *ngIf="locationError" class="error-message">
+                                    {{ locationErrorMessage }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6">
+                            <label>Governorates</label>
+                            <div class="form-row">
+                                <div class="col-xl-6 col-lg-6 col-md-6">
+                                    <div class="form-group with-light">
+                                        <select formControlName="governorate" [ngClass]="{'form-control with-light': true, 'error': postForm.controls['governorate'].touched && postForm.controls['governorate'].invalid}">
+                                            <option value="" disabled selected>Select Governorate</option>
+                                            <option value="ariana">Ariana</option>
+                                            <option value="beja">Béja</option>
+                                            <option value="ben_arous">Ben Arous</option>
+                                            <option value="bizerte">Bizerte</option>
+                                            <option value="gabes">Gabès</option>
+                                            <option value="gafsa">Gafsa</option>
+                                            <option value="jendouba">Jendouba</option>
+                                            <option value="kairouan">Kairouan</option>
+                                            <option value="kasserine">Kasserine</option>
+                                            <option value="kebili">Kebili</option>
+                                            <option value="kef">Kef</option>
+                                            <option value="mahdia">Mahdia</option>
+                                            <option value="manouba">Manouba</option>
+                                            <option value="medenine">Medenine</option>
+                                            <option value="monastir">Monastir</option>
+                                            <option value="nabeul">Nabeul</option>
+                                            <option value="sfax">Sfax</option>
+                                            <option value="sidi_bouzid">Sidi Bouzid</option>
+                                            <option value="siliana">Siliana</option>
+                                            <option value="sousse">Sousse</option>
+                                            <option value="tataouine">Tataouine</option>
+                                            <option value="tozeur">Tozeur</option>
+                                            <option value="tunis">Tunis</option>
+                                            <option value="zaghouan">Zaghouan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="form-group">
+                                <label>Report Description</label>
+                                <textarea  formControlName="description" [ngClass]="{'form-control with-light': true, 'error': postForm.controls['description'].touched && postForm.controls['description'].invalid}" ></textarea>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="form-group">
+                                <label>Image</label>
+                                <input type="file" (change)="selectImage($event)" class="form-control with-light">
+                            </div>
+                        </div>
+
+                        <button type="submit" [disabled]="postForm.invalid" class="btn btn-save">Submit Report</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Single Wrap End -->
+
+
+
+    </div>
+</div>

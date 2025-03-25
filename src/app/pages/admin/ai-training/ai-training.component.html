@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+      <!-- Breadcrumbs -->
+      <div class="bredcrumb_wrap">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+              <li class="breadcrumb-item active" aria-current="page">AI Training Management</li>
+            </ol>
+          </nav>	
+      </div>
+  </div>
+</div>
+
+<div class="admin-ai-training">
+    <div class="training-status">
+      <p>Current Status: <strong>{{ trainingStatus }}</strong></p>
+      <p>Last Training Date: <strong>{{ lastTrainingDate }}</strong></p>
+      <button class="btn start-training-btn" (click)="startTraining()" title="Start new AI model training">
+        Start New Training
+      </button>
+    </div>
+  </div>
+  

@@ -1,0 +1,122 @@
+.upload-container {
+  padding: 2rem 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.upload-section {
+  border: 2px dashed var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  background: rgba(11, 133, 236, 0.05);
+}
+
+.upload-section:hover {
+  border-color: var(--primary);
+  background: rgba(11, 133, 236, 0.1);
+}
+
+input[type="file"] {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  position: absolute;
+}
+
+.custom-upload-btn {
+  background: var(--primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.3s ease;
+}
+
+.custom-upload-btn:hover {
+  background: var(--primary-hover);
+}
+
+.detection-result {
+  margin-top: 2rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Add styles for action buttons */
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.camera-btn {
+  background-color: #28a745;
+}
+
+.upload-btn {
+  background-color: #007bff;
+}
+
+.loading-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.results-card {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.image-preview {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.severity-badge {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.report-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.confirm-btn {
+  background-color: #28a745;
+}
+
+.reject-btn {
+  background-color: #dc3545;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}

@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+      <!-- Breadcrumbs -->
+      <div class="bredcrumb_wrap">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Proposals</li>
+            </ol>
+          </nav>	
+      </div>
+  </div>
+</div>
+
+
+
+
+<div class="card">
+
+  
+<div class="mb-4">
+  <p-button type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" text />
+  <p-button type="button" icon="pi pi-refresh" (click)="reset(); loadServices()" text></p-button>
+  <p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" text />
+  In total there are {{ services ? services.length : 0 }} proposals.
+</div>
+  <!-- <div class="flex items-center justify-between p-3">
+      <p-button label="Reload" raised class="p-button-sm p-button-secondary" (click)="loadServices()">
+        <i class="bi bi-bootstrap-reboot"></i>
+    </p-button>
+  </div> -->
+
+  <p-table
+  [value]="services"
+  [paginator]="true"
+  [rows]="5"
+  [first]="first"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  (onPage)="pageChange($event)"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  >
+      <ng-template #header>
+          <tr>
+              <th>Proposal ID</th>
+              <th>Images</th>
+              <th>Governorate</th>
+              <th>Time</th>
+              <th>Submitted By</th>
+              <th>Action</th>
+          </tr>
+      </ng-template>
+      <ng-template #body let-service>
+          <tr>
+              <td>{{ service._id }}</td>
+              <td>
+                  <img
+                      [src]="'http://127.0.0.1:5000/image/' + service.image"
+                      [alt]="service.name"
+                      style="width: 96px; border-radius: 8px;" 
+                  />          
+              </td>
+              <td>{{ service.governorate }}</td>
+              <td>{{ service.createdAt| date: 'medium' }}</td>
+              <td>
+                  {{ service.idUser?.firstname }} 
+                  {{ service.idUser?.lastname }}
+              </td>
+              <td>
+                <div class="flex justify-center flex-wrap gap-4 mb-6">
+                  <p-button 
+                    icon="pi pi-search" 
+                    severity="success" 
+                    aria-label="Search" />
+                  <p-button 
+                    icon="pi pi-trash" 
+                    severity="danger" 
+                    (click)="delete(service._id)"
+                    aria-label="Delete" />
+                </div>
+              </td>
+          </tr>
+      </ng-template>
+      <!-- <ng-template #footer> In total there are {{ services ? services.length : 0 }} proposals. </ng-template> -->
+  
+
+
+    <!-- <ng-template #paginatorleft>
+        <p-button type="button" icon="pi pi-plus" text />
+    </ng-template>
+    <ng-template #paginatorright>
+        <p-button type="button" icon="pi pi-cloud" text />
+    </ng-template> -->
+  
+    </p-table>
+</div>
+
+<p *ngIf="services.length === 0">No services found.</p>

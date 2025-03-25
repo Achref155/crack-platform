@@ -1,0 +1,20 @@
+.input-group {
+    position: relative;
+}
+
+.input-group-addon {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 0 4px 4px 0;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+.loading-indicator {
+    margin-top: 10px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}

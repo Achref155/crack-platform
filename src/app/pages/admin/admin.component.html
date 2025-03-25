@@ -1,0 +1,43 @@
+<!-- Page Title -->
+<div class="page-title bg-cover" style="background:url(assets/img/road.svg)no-repeat;" data-overlay="5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Section -->
+<section class="gray-bg pt-4">
+    <div class="container-fluid">
+        <div class="row m-0">
+
+            <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12">
+                <div class="dashboard-navbar overlio-top">
+                    <div class="d-user-avater">
+                      <img [src]="'http://127.0.0.1:5000/image/' + (user.image || 'avatar.png')" class="img-fluid rounded" alt="">
+                      <h4>{{ user.firstname + ' ' + user.lastname }}</h4>
+                    </div>
+                  
+                    <div class="d-navigation">
+                      <ul id="metismenu">
+                        <li class="active"><a routerLink="/admin"><i class="ti-dashboard"></i>Dashboard</a></li>
+                        <li><a routerLink="/admin/profile"><i class="ti-user"></i>My Profile</a></li>
+                        <li><a routerLink="/admin/users"><i class="ti-user"></i>User Management</a></li>
+                        <li><a routerLink="/admin/user-proposals"><i class="ti-folder"></i>Reports</a></li>
+                        <li><a routerLink="/admin/ai-training"><i class="ti-brain"></i>AI Training</a></li>
+                        <li><a routerLink="/admin/settings"><i class="ti-settings"></i>Settings</a></li>
+                        <li><a (click)="logout()" ><i class="ti-power-off"></i>Log Out</a></li>
+                      </ul>
+                    </div>
+                  </div>
+            </div>
+
+            <!-- Admin Content Wrap Start -->
+            <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12">
+                <router-outlet></router-outlet>
+            </div>
+
+        </div>
+    </div>
+</section>

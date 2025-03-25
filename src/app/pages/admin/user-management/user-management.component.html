@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+      <!-- Breadcrumbs -->
+      <div class="bredcrumb_wrap">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+              <li class="breadcrumb-item active" aria-current="page">User Management</li>
+            </ol>
+          </nav>	
+      </div>
+  </div>
+</div>
+
+
+<div class="card">
+
+  
+  <div class="mb-4">
+    <p-button type="button" icon="pi pi-chevron-left" (click)="prev()" [disabled]="isFirstPage()" text />
+    <p-button type="button" icon="pi pi-refresh" (click)="reset(); loadUsers()" text></p-button>
+    <p-button type="button" icon="pi pi-chevron-right" (click)="next()" [disabled]="isLastPage()" text />
+    In total there are {{ userCount }} users.
+  </div>
+
+  <p-table
+  [value]="users"
+  [paginator]="true"
+  [rows]="5"
+  [first]="first"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  (onPage)="pageChange($event)"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  >
+    <ng-template #header>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-user>
+        <tr>
+          <td>{{ user._id }}</td>
+          <td>{{ user.firstname }} {{ user.lastname }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <!-- <button (click)="banUser(user._id)" class="btn btn-warning">Ban</button> -->
+            <!-- <button (click)="removeUser(user._id)" class="btn btn-danger">Remove</button> -->
+            <p-button 
+            icon="pi pi-ban" 
+            severity="danger" 
+            (click)="banUser(user._id)"
+            aria-label="Delete" />
+            <p-button 
+            icon="pi pi-trash" 
+            severity="danger" 
+            (click)="removeUser(user._id)"
+            aria-label="Delete" />
+          </td>
+        </tr>
+    </ng-template>
+
+  </p-table>
+  </div>
+
+  <p *ngIf="users.length === 0">No users found.</p>
