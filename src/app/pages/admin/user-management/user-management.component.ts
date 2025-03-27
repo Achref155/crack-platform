@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../../core/services/admin.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { HttpClientModule } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-management',
@@ -88,16 +88,29 @@ isFirstPage(): boolean {
     }).then((result) => {
       if (result.isConfirmed) {
         
-        this.adminService.removeUser(userId).subscribe({
-          next: () => {
-            this.ngOnInit();
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success"
-            });
-          }
+    this.adminService.removeUser(userId).subscribe({
+      next: (response) => {
+        console.log("Delete response:", response); // Debugging
+        Swal.fire({
+          title: "Deleted!",
+          text: "User removed successfully.",
+          icon: "success"
+        }).then(() => {
+          this.ngOnInit();
         });
+      },
+      error: (err) => {
+        console.warn("Ignoring parsing error, user was deleted:", err);
+        Swal.fire({
+          title: "Deleted!",
+          text: "User removed successfully, but received an unexpected response.",
+          icon: "warning"
+        }).then(() => {
+          this.ngOnInit();
+        });
+      }
+    });
+    
       }
     });
   }

@@ -1,0 +1,56 @@
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+    background-color: white !important;
+    text-align: center;
+    font-weight: bold;
+    color: black!important;
+
+}
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+    text-align: center;
+    font-weight: bold;
+}
+
+:host ::ng-deep .p-button {
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+:host ::ng-deep .p-button:hover {
+    background-color: #005ea6 !important;
+}
+
+:host ::ng-deep .p-paginator {
+    background-color: white !important;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+    background-color: #005ea6;
+    border-radius: 5px;
+    margin: 0 4px;
+}
+
+:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background-color: #005ea6 !important;
+}
+
+:host ::ng-deep .p-paginator .p-select {
+    font-size: 14px !important; /* Adjust font size */
+    font-weight: bold !important; /* Make text bold */
+    color: #0078D4 !important; /* Change text color */
+    background-color: #005ea6 !important; /* Set background */
+    border: 1px solid #0078D4 !important; /* Add border */
+    border-radius: 6px !important; /* Round corners */
+    padding: 6px 10px !important;
+}
+
+:host ::ng-deep .p-select-list {
+    background-color: #005ea6 !important;
+    border: 1px solid #0078D4 !important; /* Add border */
+    border-radius: 6px !important; /* Round corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2) !important; /* Add shadow */
+    padding: 5px 0 !important;
+}
+

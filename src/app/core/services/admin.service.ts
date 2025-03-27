@@ -14,6 +14,7 @@ export class AdminService {
   private settingsUrl = 'http://127.0.0.1:5000/admin/settings/';
   private adminDetailsUrl = 'http://127.0.0.1:5000/admin/details/';
   private locationUrl = 'http://127.0.0.1:5000/admin/locations/';
+  
 
 
   constructor(private http: HttpClient) {}

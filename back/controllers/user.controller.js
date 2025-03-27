@@ -27,61 +27,73 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(400).json({ 
-      message: 'Email and password are required' 
+    return res.status(400).json({
+      message: 'Email and password are required',
     });
   }
 
   try {
-    const user = await User.findOne({ 
-      email: email.trim().toLowerCase() 
-    }).select('+password');
+    // Find the user by email, making sure it's case insensitive
+    const user = await User.findOne({ email: email.trim().toLowerCase() }).select('+password');
+
+    // Log the user object to check if it's being found correctly
+    console.log('User found:', user);
 
     if (!user) {
-      return res.status(401).json({ 
-        message: 'Invalid credentials' 
+      return res.status(401).json({
+        message: 'Invalid credentials',
       });
     }
 
+    // Compare the entered password with the stored hash
     const isMatch = await bcrypt.compare(password, user.password);
+
+    // Log the result of password comparison for debugging
+    console.log('Password match:', isMatch);
+
     if (!isMatch) {
-      return res.status(401).json({ 
-        message: 'Invalid credentials' 
+      return res.status(401).json({
+        message: 'Invalid credentials',
       });
     }
 
+    // If the user is banned, return a 403 error
     if (user.isBanned) {
-      return res.status(403).json({ 
-        message: 'Account suspended' 
+      return res.status(403).json({
+        message: 'Account suspended',
       });
     }
 
-    const token = jwt.sign({ 
-      id: user._id 
-    }, '123456789', { 
-      expiresIn: '1h' 
-    });
+    // Create JWT token
+    const token = jwt.sign(
+      { id: user._id },
+      '123456789', // You should move this secret to an environment variable
+      { expiresIn: '1h' }
+    );
 
+    // Create a user object without the password field
     const userWithoutPassword = user.toObject();
     delete userWithoutPassword.password;
 
-    res.status(200).json({ 
-      token, 
-      user: userWithoutPassword 
+    // Respond with the token and user details
+    res.status(200).json({
+      token,
+      user: userWithoutPassword,
     });
-
   } catch (error) {
     console.error('Login error details:', {
       error: error.message,
       stack: error.stack,
-      requestBody: req.body
+      requestBody: req.body,
     });
-    res.status(500).json({ 
+
+    // Return proper error response in JSON format
+    res.status(500).json({
       message: 'Authentication process failed',
-      detail: error.message 
+      detail: error.message,
     });
   }
-}
+};
 
 
 exports.getUserById = async (req, res)=>{

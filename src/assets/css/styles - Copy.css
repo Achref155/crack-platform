@@ -22,16 +22,11 @@
 /*------------------------------------
 	Google Fonts
 ------------------------------------*/
-
-
-
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&amp;display=swap');
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 @import "primeicons/primeicons.css";
 @import "tailwindcss";
 @import "tailwindcss-primeui";
-
-
 
 
 /*------------------------------------------------------------
@@ -975,7 +970,6 @@ ul.simple-list li:before {
 }
 table.table tr th {
     font-weight: 600;
-    text-align: center;
 }
 .table-dark {
     color: #fff;
@@ -8993,7 +8987,6 @@ a.rate-review i {
 }
 table.table tr th {
     font-weight: 500;
-    text-align: center;
 }
 .dashboard-wrapers .card {
     border-radius: 6px;
@@ -11005,6 +10998,8 @@ footer.skin-dark-footer ul.footer-bottom-social li a:hover, footer.skin-dark-foo
 
 @media (max-width:420px) {}
 
+@import 'upload-detect-styles.css';
+
 
 .card {
     border: 1px solid #ddd;
@@ -11039,3 +11034,40 @@ footer.skin-dark-footer ul.footer-bottom-social li a:hover, footer.skin-dark-foo
 /* Table Styling */
 
 
+table th {
+    font-weight: bold;
+    background-color: #f8f9fa; /* Light gray highlight */
+    padding: 8px;
+    text-align: center;
+  }
+/* Angular-specific style */
+::ng-deep table th {
+    font-weight: bold;
+    background-color: #f8f9fa; /* Light gray highlight */
+    padding: 8px;
+    text-align: center;
+  }
+
+/* Add this to your component's CSS or global styles */
+
+
+  
+::ng-deep .p-paginator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  ::ng-deep .p-paginator-current {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  ::ng-deep .p-paginator-pages {
+    display: flex;
+    margin: 0 1rem;
+  }
+  
+  ::ng-deep .p-paginator-page {
+    margin: 0 0.25rem;
+  }

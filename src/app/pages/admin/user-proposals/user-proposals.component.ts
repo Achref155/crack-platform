@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 @Component({
     selector: 'app-user-proposals',
     templateUrl: './user-proposals.component.html',
+    styleUrls: ['./user-proposals.component.css'],
     standalone: true,
     imports: [CommonModule, TableModule, ButtonModule, HttpClientModule]
 })

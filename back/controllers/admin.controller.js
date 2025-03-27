@@ -70,16 +70,19 @@ exports.removeUser = async (req, res) => {
     console.log("Attempting to remove user with ID:", id);
     
     await User.findByIdAndDelete(id);
-    res.status(200).send('User removed successfully');
+    
+    // ✅ Fix: Return JSON instead of plain text
+    res.status(200).json({ message: 'User removed successfully' });
   } catch (error) {
     console.error('Error removing user', {
       message: error.message,
-      stack: error.stack, // helpful in debugging but be cautious about logging this in production
+      stack: error.stack,
       operation: 'removeUser'
     });
     res.status(500).json({ message: 'Error removing user', error: error.message });
   }
 };
+
 
 
 // Implement similar logic for other admin functions

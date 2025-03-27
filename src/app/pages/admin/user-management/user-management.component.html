@@ -33,7 +33,7 @@
   [tableStyle]="{ 'min-width': '50rem' }"
   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
   (onPage)="pageChange($event)"
-  [rowsPerPageOptions]="[10, 25, 50]"
+  [rowsPerPageOptions]="[5, 10, 20, 25]"
   >
     <ng-template #header>
         <tr>
@@ -49,17 +49,21 @@
           <td>{{ user.firstname }} {{ user.lastname }}</td>
           <td>{{ user.email }}</td>
           <td>
-            <!-- <button (click)="banUser(user._id)" class="btn btn-warning">Ban</button> -->
-            <!-- <button (click)="removeUser(user._id)" class="btn btn-danger">Remove</button> -->
             <p-button 
             icon="pi pi-ban" 
-            severity="danger" 
+            severity="warn" 
             (click)="banUser(user._id)"
-            aria-label="Delete" />
+            [rounded]="true" 
+            [text]="true"
+            [raised]="true"
+            aria-label="Delete" />&nbsp;&nbsp;
             <p-button 
             icon="pi pi-trash" 
             severity="danger" 
             (click)="removeUser(user._id)"
+            [rounded]="true" 
+            [text]="true"
+            [raised]="true"
             aria-label="Delete" />
           </td>
         </tr>

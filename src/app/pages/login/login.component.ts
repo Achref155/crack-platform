@@ -74,15 +74,18 @@ export class LoginComponent {
       error: (err) => {
         this.loginInProgress = false;
         console.error('Login Error Details:', err);
-        const errorMessage = err.error?.message || 'Authentication failed';
+      
+        // Try to extract the error message from the response
+        const errorMessage = err.error?.message || err.error?.detail || 'Authentication failed';
+      
         Swal.fire({
-          position: "top-end",
           icon: "error",
           title: errorMessage,
           showConfirmButton: false,
           timer: 1500
         });
       }
+      
     });
   }
 }
