@@ -1,0 +1,23 @@
+/* Default Light Mode */
+#main-wrapper {
+    background-color: white;
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark Mode Styles */
+#main-wrapper.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+/* PrimeNG Adjustments for Dark Mode */
+.dark-mode .p-button {
+    background-color: #1e1e1e !important;
+    color: white !important;
+}
+
+.dark-mode .p-card {
+    background-color: #222 !important;
+    color: white !important;
+}

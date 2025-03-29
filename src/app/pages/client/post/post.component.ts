@@ -4,14 +4,25 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { ServiceService } from '../../../core/services/service.service';
 import { UserService } from '../../../core/services/user.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { FileUpload, FileUploadEvent } from 'primeng/fileupload';
+import { ToastModule } from 'primeng/toast';
 import Swal from 'sweetalert2';
+import { ButtonModule } from 'primeng/button';
+
+
+interface UploadEvent {
+  originalEvent: Event;
+  files: File[];
+}
 
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [FileUpload, ToastModule, CommonModule, ReactiveFormsModule, ButtonModule],
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  styleUrls: ['./post.component.css'],
+  providers: [MessageService]
 })
 export class PostComponent {
 
@@ -19,12 +30,15 @@ export class PostComponent {
   image: File | null = null;
   idUser: string | null = null;
   dangerLevel: string = 'Unknown';
+  uploadedFiles: any[] = [];
+
 
   constructor(
     private fb: FormBuilder,
     private _service: ServiceService,
     private _user: UserService,
-    private _router: Router
+    private _router: Router,
+    private messageService: MessageService
   ) {
     this.idUser = this._user.getUserIdFromToken();
 
@@ -52,14 +66,29 @@ export class PostComponent {
     }
   }
 
-  selectImage(e: any) {
-    this.image = e.target.files[0];
+  onUpload(event: FileUploadEvent) {
+    // Clear the uploadedFiles array before adding new files, if needed
+    this.uploadedFiles = [];  // Optional: To clear previously uploaded files, otherwise remove this line
+  
+    // Loop through the files in the event and push them to the uploadedFiles array
+    for (let file of event.files) {
+      this.uploadedFiles.push(file);
+    }
+  
+    // Set the first file as the image to be used in the create method
+    if (event.files.length > 0) {
+      this.image = event.files[0];
+    }
+  
+    // Optional: Add a message indicating that the file upload was successful
+    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
   }
+  
+
 
   create() {
     if (!this.postForm.valid) {
       Swal.fire({
-        position: "top-end",
         icon: "error",
         title: "Please correct the errors in the form.",
         text: this.getFormValidationErrors(),
@@ -71,7 +100,6 @@ export class PostComponent {
   
     if (!this.image) {
       Swal.fire({
-        position: "top-end",
         icon: "error",
         title: "Please select an image",
         showConfirmButton: false,
@@ -82,7 +110,6 @@ export class PostComponent {
   
     if (!this.idUser) {
       Swal.fire({
-        position: "top-end",
         icon: "error",
         title: "User not logged in",
         showConfirmButton: false,
@@ -100,6 +127,8 @@ export class PostComponent {
     fd.append('dangerLevel', this.dangerLevel);
     fd.append('image', this.image);
     fd.append('idUser', this.idUser);
+
+
     // Update the timestamp with higher precision
     const createdAt = new Date().toISOString();
     fd.append('createdAt', createdAt);
@@ -107,7 +136,6 @@ export class PostComponent {
     this._service.create(fd).subscribe({
       next: (res) => {
         Swal.fire({
-          position: "top-end",
           icon: "success",
           title: "Your post has been saved",
           showConfirmButton: false,
@@ -117,7 +145,6 @@ export class PostComponent {
       },
       error: (err) => {
         Swal.fire({
-          position: "top-end",
           icon: "error",
           title: "Error saving post",
           showConfirmButton: false,

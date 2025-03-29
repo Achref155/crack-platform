@@ -28,7 +28,7 @@
 
   <p-table
   [value]="services"
-  [paginator]="true"
+  [paginator]="true!"
   [rows]="5"
   [first]="first"
   [showCurrentPageReport]="true"
@@ -54,8 +54,8 @@
                   <img
                       [src]="'http://127.0.0.1:5000/image/' + service.image"
                       [alt]="service.name"
-                      style="width: 96px; border-radius: 8px;" 
-                  />          
+                      style="width: 96px; border-radius: 8px; margin: 0 auto; display: block;"
+                      />          
               </td>
               <td>{{ service.governorate }}</td>
               <td>{{ service.createdAt| date: 'medium' }}</td>

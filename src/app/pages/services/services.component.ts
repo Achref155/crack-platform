@@ -1,18 +1,33 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ServiceService } from '../../core/services/service.service';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { SelectButton } from 'primeng/selectbutton';
+import { DataView } from 'primeng/dataview';
+
+
 
 declare const google: any; // Declare if types are not installed
 
 @Component({
     selector: 'app-services',
-    imports: [RouterModule],
+    imports: [RouterModule, FormsModule, ButtonModule, SelectButton, DataView, CommonModule],
     templateUrl: './services.component.html',
-    styleUrl: './services.component.css'
+    styleUrl: './services.component.css',
+    standalone: true,
+    providers: [ServiceService]
 })
-export class ServicesComponent implements AfterViewInit {
+export class ServicesComponent {
 
   services: any;
+  
+  layout: 'list' | 'grid' = 'list'; // Explicitly define the type and set a default value
+  options = [
+      { label: 'List', value: 'list' },
+      { label: 'Grid', value: 'grid' }
+  ];
 
   constructor(private _service: ServiceService) {}
 

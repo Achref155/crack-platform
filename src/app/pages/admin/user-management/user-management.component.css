@@ -26,11 +26,7 @@
     font-weight: bold;
 }
 
-:host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
-    background-color: #005ea6;
-    border-radius: 5px;
-    margin: 0 4px;
-}
+
 
 :host ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
     background-color: #005ea6 !important;

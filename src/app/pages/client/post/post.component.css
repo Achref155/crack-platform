@@ -1,20 +1,53 @@
-.input-group {
-    position: relative;
+:host ::ng-deep .p-fileupload.p-fileupload-advanced {
+    background-color: #f5f5f5 !important; /* Background color for the file upload container */
+    border-radius: 10px !important; /* Rounded corners */
+    border: 1px solid #0078D4 !important; /* Border color */
+    padding: 15px !important; /* Padding inside the container */
 }
 
-.input-group-addon {
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
-    border-radius: 0 4px 4px 0;
-    padding: 8px 15px;
-    cursor: pointer;
+:host ::ng-deep .p-fileupload.p-fileupload-advanced .p-button {
+    background-color: #0078D4 !important; /* Button background */
+    color: white !important; /* Text color */
+    border-radius: 8px !important; /* Rounded corners */
+    font-size: 14px !important; /* Font size */
+    padding: 10px 20px !important; /* Padding */
 }
 
-.loading-indicator {
-    margin-top: 10px;
+:host ::ng-deep .p-fileupload.p-fileupload-advanced .p-button:hover {
+    background-color: #005a99 !important; /* Hover effect */
 }
 
-.error-message {
-    color: red;
-    margin-top: 10px;
+
+:host ::ng-deep .p-fileupload.p-fileupload-advanced .p-cancel-btn:hover {
+    background-color: #c82333 !important; /* Darken cancel button on hover */
 }
+
+:host ::ng-deep .p-fileupload .p-button-secondary.p-fileupload-upload-button {
+    background-color: #218838 !important;
+    color: white !important;
+}
+
+:host ::ng-deep .p-fileupload.p-fileupload-advanced .p-fileupload-upload-button:hover {
+    background-color: #0d581e !important; /* Hover effect */
+}
+
+:host ::ng-deep .p-fileupload .p-ripple.p-fileupload-cancel-button {
+    background-color: #d33 !important;
+    color: white !important;
+}
+
+:host ::ng-deep .p-fileupload.p-fileupload-advanced .p-fileupload-cancel-button:hover {
+    background-color: rgb(255, 0, 0) !important; /* Hover effect */
+}
+
+.p-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 10px 20px;/* Centers horizontally */
+    width: 100px;
+    background-color: #005a99;
+    color: white;
+}
+

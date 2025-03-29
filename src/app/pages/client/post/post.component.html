@@ -30,7 +30,7 @@
 
                         <div class="col-xl-4 col-lg-6">
                             <div class="form-group">
-                                <label>Report Name</label>
+                                <label>Street Name/Area:</label>
                                 <input type="text" formControlName="name" [ngClass]="{'form-control with-light': true, 'error': postForm.controls['name'].touched && postForm.controls['name'].invalid}" >
                             </div>
                         </div>
@@ -106,19 +106,53 @@
 
                         <div class="col-xl-12 col-lg-12">
                             <div class="form-group">
-                                <label>Report Description</label>
+                                <label>Crack Description</label>
                                 <textarea  formControlName="description" [ngClass]="{'form-control with-light': true, 'error': postForm.controls['description'].touched && postForm.controls['description'].invalid}" ></textarea>
                             </div>
                         </div>
 
                         <div class="col-xl-12 col-lg-12">
-                            <div class="form-group">
-                                <label>Image</label>
-                                <input type="file" (change)="selectImage($event)" class="form-control with-light">
-                            </div>
+                            <p-toast />                                     
+                            <p-fileupload 
+                            name="demo[]" 
+                            url="https://www.primefaces.org/cdn/api/upload.php" 
+                            (onUpload)="onUpload($event)" 
+                            [multiple]="true" 
+                            accept="image/*" 
+                            maxFileSize="1000000" 
+                            mode="advanced">
+                            <label>Image</label>
+                            <ng-template #empty>
+                                <div>Drag and drop files here to upload.</div>
+                            </ng-template>
+                            <ng-template #content>
+                                <ul *ngIf="uploadedFiles.length">
+                                    <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                                </ul>
+                            </ng-template>
+                        </p-fileupload>
+                        
                         </div>
+                        
 
-                        <button type="submit" [disabled]="postForm.invalid" class="btn btn-save">Submit Report</button>
+                        <!-- <div class="card">
+                            <p-toast />
+                            <p-fileupload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" maxFileSize="1000000" mode="advanced">
+                                <ng-template #empty>
+                                    <div>Drag and drop files to here to upload.</div>
+                                </ng-template>
+                                <ng-template #content>
+                                    <ul *ngIf="uploadedFiles.length">
+                                        <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                                    </ul>
+                                </ng-template>
+                            </p-fileupload>
+                        </div> -->
+                        &nbsp;&nbsp;
+                        <div class="p-btn">
+                            <p-button type="submit" label="Submit" severity="info"  [disabled]="postForm.invalid" />
+                        </div>
+                        <!-- <button type="submit" [disabled]="postForm.invalid" class="btn btn-save">Submit Report</button> -->
                     </div>
                 </form>
             </div>
